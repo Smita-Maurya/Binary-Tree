@@ -1,0 +1,30 @@
+BinaryTreeNode<int> *helper(int *postorder, int poss, int pose, int *inorder,int ins, int ine) {
+	if(ins>ine){
+		return NULL;
+	}
+  int rootdata = postorder[pose];
+  int index = -1;
+  for (int i = ins; i <= ine; i++) {
+    if (inorder[i] == rootdata) {
+      index = i;
+	  break;
+    }
+  }
+  int Lins = ins;
+  int Line = index - 1;
+  int Lposs = poss;
+  int Lpose = Line - Lins + Lposs;
+  int Rins = index + 1;
+  int Rine = ine;
+  int Rposs = Lpose + 1;
+  int Rpose = Rine - Rins + Rposs;
+
+  BinaryTreeNode<int>* root = new BinaryTreeNode<int>(rootdata);
+  root->left = helper(postorder, Lposs, Lpose, inorder, Lins, Line);
+  root->right = helper(postorder, Rposs, Rpose, inorder, Rins, Rine);
+  return root;
+}
+BinaryTreeNode<int>* buildTree(int *postorder, int postLength, int *inorder, int inLength) {
+       return helper(postorder , 0 , postLength-1, inorder , 0 ,inLength-1);
+    
+}

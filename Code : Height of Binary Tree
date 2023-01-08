@@ -1,0 +1,22 @@
+int height(BinaryTreeNode<int>* root) {
+	int ans=1;
+	if(root==NULL){
+		//ans =0;
+		return 0;
+	}
+	/*else {
+		//ans =1;
+		return 1;
+	}*/
+	int leftheight=  height(root->left);
+	//return ans;
+	int rightheight= height(root->right);
+	if(leftheight> rightheight){
+		return leftheight+1;
+	}
+	else{
+		return rightheight+1;
+	}
+
+    
+}

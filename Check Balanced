@@ -1,0 +1,23 @@
+int height(BinaryTreeNode<int>*root){
+	if(root==NULL){
+		return 0;
+	}
+	int leftheight = height(root->left);
+	int rightheight = height(root->right);
+	return 1+ leftheight;
+	return 1+rightheight;
+}
+bool isBalanced(BinaryTreeNode<int> *root) {
+	if(root==NULL){
+		return true;
+	}
+       // int ans = height(root->left) - height(root->right);
+        if (height(root->left) == height(root->right)) {
+          return true;
+        }
+
+        else {
+          return false;
+        }
+        
+}

@@ -1,0 +1,56 @@
+#include<stack>
+void zigZagOrder(BinaryTreeNode<int> *root) {
+	if(root==NULL){
+		return ;
+	}
+   stack< BinaryTreeNode<int>*> currlevel;
+   stack<BinaryTreeNode<int>*> nextlevel;
+   currlevel.push(root);
+   bool lefttoright=true;
+
+   while(!currlevel.empty() || !nextlevel.empty()){
+
+	   while(!currlevel.empty())
+	   {
+		BinaryTreeNode<int> * temp = currlevel.top();
+		currlevel.pop();
+		cout<<temp->data<<" ";
+
+		
+			
+			if(temp->left){
+				nextlevel.push(temp->left);
+			}
+			if(temp->right){
+				nextlevel.push(temp->right);
+			}
+
+			if(currlevel.empty())
+				cout<<endl;
+			
+	   }
+	   while(!nextlevel.empty())
+	   {
+		BinaryTreeNode<int> * temp = nextlevel.top();
+		nextlevel.pop();
+		cout<<temp->data<<" ";
+
+		
+			if(temp->right){
+				currlevel.push(temp->right);
+			}
+			if(temp->left){
+				currlevel.push(temp->left);
+			}
+			
+
+			if(nextlevel.empty())
+				cout<<endl;
+			
+	   }
+	   
+   }
+   
+
+   
+}
